@@ -5,7 +5,6 @@ import Input from '../components/Input'
 import {useDispatch} from "react-redux"
 import authService from '../apppwrite/auth'
 import {useForm} from "react-hook-form"
-
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -28,9 +27,9 @@ function Login() {
 
   return (
     <div
-    className='flex items-center justify-center w-full'
+    className='flex mr-32'
     >
-        <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+        <div className={`mx-auto mt-36 max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <div className="mb-2 flex justify-center">
                   
         </div>
@@ -69,7 +68,7 @@ function Login() {
                 />
                 <button
                 type="submit"
-                className="w-full"
+                className="w-36 rounded-lg h-7 text-white bg-blue-600 "
                 >Sign in</button>
             </div>
         </form>

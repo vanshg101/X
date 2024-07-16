@@ -32,15 +32,15 @@ export default function AddPost({ post }) {
 
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-col space-y-3">
-            <div className="w-full mt-2 flex px-2 items-center">
+            <div className="w-full mt-4 flex px-2 items-center">
                 <img
                     src="https://pbs.twimg.com/profile_images/1508720448410099714/5ZFpx5vI_400x400.jpg"
                     alt="Logo"
-                    className="h-10 px-2 rounded-full"
+                    className="h-12 px-2 rounded-full"
                 />
                 <Input
                     placeholder="What is Happening?!"
-                    className="mb-0 bg-black text-gray-700 flex-grow"
+                    className="mb-0 text-xl bg-black text-gray-700 flex-grow"
                     {...register("content", { required: true })}
                 />
             </div>

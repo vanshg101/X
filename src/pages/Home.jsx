@@ -1,5 +1,6 @@
 import React from "react";
 import AddPost from "../components/AddPost";
+// import Post from "../components/Post";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
           </button>
         </div>
         <AddPost/>
+        {/* <Post/> */}
       </div>
     </div>
   );
