@@ -1,4 +1,5 @@
 import React from "react";
+import AddPost from "../components/AddPost";
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
             Following
           </button>
         </div>
+        <AddPost/>
       </div>
     </div>
   );
