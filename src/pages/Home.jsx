@@ -1,6 +1,7 @@
 import React from "react";
 import AddPost from "../components/AddPost";
 // import Post from "../components/Post";
+import AllPosts from "../components/AllPost";
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
         </div>
         <AddPost/>
         {/* <Post/> */}
+        <AllPosts/>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
+// import { ID } from "appwrite";
 
 export default function AddPost({ post }) {
     const { register, handleSubmit } = useForm({
@@ -17,15 +18,17 @@ export default function AddPost({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
-
     const submit = async (data) => {
         const file = await appwriteService.uploadFile(data.image[0]);
+
         if (file) {
             const fileId = file.$id;
             data.featuredImage = fileId;
             const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`);
+               
             }
         }
     };
@@ -61,3 +64,6 @@ export default function AddPost({ post }) {
         </form>
     );
 }
+
+
+

@@ -14,17 +14,17 @@ export class Service{
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({slug, content, featuredImage, status, userId}){
+    async createPost({ content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
+                ID.unique(),
                 {
-                     content,
+                    content,
                     featuredImage,
                     status,
-                    userId,
+                    userId 
                 }
             )
         } catch (error) {
@@ -32,12 +32,12 @@ export class Service{
         }
     }
 
-    async updatePost(slug, {content, featuredImage, status}){
+    async updatePost(postId, {content, featuredImage, status}){
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
+                postId,
                 {
                      content,
                     featuredImage,
@@ -50,12 +50,12 @@ export class Service{
         }
     }
 
-    async deletePost(slug){
+    async deletePost(postId){
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug
+                postId,
             
             )
             return true
@@ -65,12 +65,12 @@ export class Service{
         }
     }
 
-    async getPost(slug){
+    async getPost(postId){
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug
+                postId,
             
             )
         } catch (error) {
@@ -79,12 +79,12 @@ export class Service{
         }
     }
 
-    async getPosts(queries = [Query.equal("status", "active")]){
+    async getPosts(postId){
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                queries,
+                postId
                 
 
             )
@@ -131,5 +131,5 @@ export class Service{
 }
 
 
-const service = new Service()
-export default service
+const appwriteService = new Service()
+export default appwriteService

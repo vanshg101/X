@@ -4,6 +4,7 @@ import store from './store/store.js'
 import App from './App.jsx'
 import './index.css'
 import {Home,Login,Signup,MyPost} from './pages/Pindex.js'
+import Post from './components/Post.jsx'
 import { Provider } from 'react-redux'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
           {
             path:'/mypost',
             element:<MyPost/>
+          },
+          {
+            path:"/post/:postId", 
+            element:<Post />
           }
     ]
   }
