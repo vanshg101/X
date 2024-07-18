@@ -61,12 +61,25 @@ function Sidebar() {
           <div className=" text-2xl px-10 py-2  hover:bg-zinc-900 rounded-full w-auto">
             Community
           </div>
+          <div className=" text-2xl px-10 py-2  hover:bg-zinc-900 rounded-full w-auto">
+            Profile
+          </div> <div className=" text-2xl px-10 py-2  hover:bg-zinc-900 rounded-full w-auto">
+            Notification
+          </div>
           <div className=" text-2xl px-10 py-2 hover:bg-zinc-900 rounded-full w-auto">
             Bookmarks
           </div>
           {authStatus && <li className="text-2xl px-10 py-2 hover:bg-zinc-900 rounded-full w-auto"><LogoutBtn /></li>}
         </ul>
+        <button
+  type="submit"
+  className="rounded-3xl flex items-center justify-center px-10 mt-4 w-1/2 py-2 text-2xl text-white bg-blue-600 text-center"
+>
+  Post
+</button>
+
       </nav>
+      
     </div>
   );
 }
