@@ -41,7 +41,7 @@ export default function Post() {
     // const isAuthor = post.userId === userData.$id;
 
     return (
-        <div className="max-w-xl mx-auto bg-white border border-gray-300 rounded-xl shadow-sm p-4">
+        <div className="max-w-xl mx-auto bg-white border border-gray-300 rounded-xl shadow-sm ">
             {/* <div className="flex items-center">
                 <img
                     src={post.userAvatar} // Assuming your post object has a userAvatar field

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PostCard from './Postcard';
 import appwriteService from '../apppwrite/config';
+import Post from './Post';
 
 function AllPosts() {
     const [posts, setPosts] = useState([]);
@@ -24,10 +25,10 @@ function AllPosts() {
     }, []); // Empty dependency array ensures this effect runs only once on component mount
 
     return (
-        <div className="w-full py-8">
-            <div className="flex flex-wrap">
+        <div className="w-full ">
+            <div className="block  bg-black">
                 {posts.map((post) => (
-                    <div key={post.$id} className="p-2 w-1/4">
+                    <div key={post.$id} className="  border-b-2  border-gray-800 pl-8">
                         <PostCard {...post} />
                     </div>
                 ))}
