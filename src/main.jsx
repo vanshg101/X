@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import store from './store/store.js'
 import App from './App.jsx'
 import './index.css'
+import EditPost from './components/EditPost.jsx'
 import {Home,Login,Signup,MyPost} from './pages/Pindex.js'
 import Post from './components/Post.jsx'
 import { Provider } from 'react-redux'
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
           {
             path:"/post/:postId", 
             element:<Post />
+          },
+          {
+            path:"/edit-post/:postId", 
+            element:<EditPost />
           }
     ]
   }

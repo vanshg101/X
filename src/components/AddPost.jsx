@@ -12,14 +12,31 @@ export default function AddPost({ post }) {
     const { register, handleSubmit } = useForm({
         defaultValues: {
             content: post?.content || "",
-            slug: post?.$id || "",
+            
         },
     });
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
     const submit = async (data) => {
-        const file = await appwriteService.uploadFile(data.image[0]);
+
+
+        if (post) {
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+
+            if (file) {
+                appwriteService.deleteFile(post.featuredImage);
+            }
+
+            const dbPost = await appwriteService.updatePost(post.$id, {
+                ...data,
+                featuredImage: file ? file.$id : undefined,
+            });
+
+            if (dbPost) {
+                navigate(`/post/${dbPost.$id}`);
+            }
+        } else {const file = await appwriteService.uploadFile(data.image[0]);
 
         if (file) {
             const fileId = file.$id;
@@ -28,7 +45,7 @@ export default function AddPost({ post }) {
 
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`);
-               
+               }
             }
         }
     };

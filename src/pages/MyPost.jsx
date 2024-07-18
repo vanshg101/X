@@ -7,7 +7,7 @@ function AllPosts() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        // Define an async function inside useEffect to fetch posts
+      
         const fetchPosts = async () => {
             try {
                 const response = await appwriteService.getPosts();
@@ -16,13 +16,11 @@ function AllPosts() {
                 }
             } catch (error) {
                 console.error('Error fetching posts:', error);
-                // Handle error state or logging as needed
+            
             }
         };
-
-        // Call the fetchPosts function
         fetchPosts();
-    }, []); // Empty dependency array ensures this effect runs only once on component mount
+    }, []); 
 
     return (
         <div className="w-full ">
