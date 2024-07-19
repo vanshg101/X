@@ -14,7 +14,7 @@ function PostCard({ $id, content, featuredImage }) {
               className="h-10 w-10 rounded-full mr-4"
             />
             <div className="flex gap-1 -mt-1 ">
-              <h2 className="text-white font-bold text-base">Vansh Gularia</h2>
+              <h2 className="text-white font-bold text-base">Vansh</h2>
               <img
                 src="https://imgs.search.brave.com/d2isc2csx5mzfmhBrUdVuBByaX0XeQ_1mc7GNwTs1Yw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4z/LmVtb2ppLmdnL2Vt/b2ppcy8zMjc0LXZl/cmlmaWVkLnBuZw"
                 alt="verified"

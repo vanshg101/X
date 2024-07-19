@@ -1,20 +1,22 @@
 import conf from '../conf/conf.js';
-import { Client, ID, Databases, Storage, Query } from "appwrite";
+import { Client, ID, Databases, Storage,  Query } from "appwrite";
 
-export class Service{
+export class Service {
     client = new Client();
     databases;
     bucket;
-    
-    constructor(){
+    users;
+
+    constructor() {
         this.client
-        .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId);
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId);
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
+        // this.users = new Users(this.client); // Initialize Users service
     }
 
-    async createPost({ content, featuredImage, status, userId}){
+    async createPost({ content, featuredImage, status, userId }) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -24,134 +26,114 @@ export class Service{
                     content,
                     featuredImage,
                     status,
-                    userId 
+                    userId
                 }
-            )
+            );
         } catch (error) {
-            console.log("Appwrite serive :: createPost :: error", error);
+            console.log("Appwrite service :: createPost :: error", error);
         }
     }
 
-    async updatePost(postId, {content, featuredImage, status}){
+    async updatePost(postId, { content, featuredImage, status }) {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 postId,
                 {
-                     content,
+                    content,
                     featuredImage,
                     status,
-
                 }
-            )
+            );
         } catch (error) {
-            console.log("Appwrite serive :: updatePost :: error", error);
+            console.log("Appwrite service :: updatePost :: error", error);
         }
     }
 
-    async deletePost(postId){
+    async deletePost(postId) {
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                postId,
-            
-            )
-            return true
+                postId
+            );
+            return true;
         } catch (error) {
-            console.log("Appwrite serive :: deletePost :: error", error);
-            return false
+            console.log("Appwrite service :: deletePost :: error", error);
+            return false;
         }
     }
 
-    async getPost(postId){
+    async getPost(postId) {
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                postId,
-            
-            )
+                postId
+            );
         } catch (error) {
-            console.log("Appwrite serive :: getPost :: error", error);
-            return false
+            console.log("Appwrite service :: getPost :: error", error);
+            return false;
         }
     }
 
-    async getPosts(postId){
+    async getPosts(query) {
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                postId
-                
-
-            )
-        } catch (error) {
-            console.log("Appwrite serive :: getPosts :: error", error);
-            return false
-        }
-    }
-    async fetchAndSortPosts(postId){
-        try {
-            const response = await this.databases.listDocuments(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
-                postId
+                query
             );
-            const posts = response.documents;
-    
-            // Ensure email fields are defined before sorting
-            const sortedPosts = posts.sort((a, b) => {
-                const emailA = a.email || '';
-                const emailB = b.email || '';
-                return emailA.localeCompare(emailB);
-            });
-    
-            return sortedPosts;
         } catch (error) {
-            console.error('Error fetching posts:', error);
-            return [];
+            console.log("Appwrite service :: getPosts :: error", error);
+            return false;
         }
     }
-    
-    // file upload service
 
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
             return await this.bucket.createFile(
                 conf.appwriteBucketId,
                 ID.unique(),
                 file
-            )
+            );
         } catch (error) {
-            console.log("Appwrite serive :: uploadFile :: error", error);
-            return false
+            console.log("Appwrite service :: uploadFile :: error", error);
+            return false;
         }
     }
 
-    async deleteFile(fileId){
+    async deleteFile(fileId) {
         try {
             await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId
-            )
-            return true
+            );
+            return true;
         } catch (error) {
-            console.log("Appwrite serive :: deleteFile :: error", error);
-            return false
+            console.log("Appwrite service :: deleteFile :: error", error);
+            return false;
         }
     }
 
-    getFilePreview(fileId){
+    getFilePreview(fileId) {
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
-        )
+        );
     }
+
+    // New method to get user details
+    // async getUser(userId) {
+    //     try {
+    //         return await this.users.get(userId);
+    //     } catch (error) {
+    //         console.log("Appwrite service :: getUser :: error", error);
+    //         return false;
+    //     }
+    // }
 }
 
-
-const appwriteService = new Service()
-export default appwriteService
+const appwriteService = new Service();
+export default appwriteService;
