@@ -66,7 +66,7 @@ export default function AddPost({ post }) {
             </div>
             <div className="flex items-center justify-between px-2 border-b-2 border-gray-700">
                 <label className="mb-4 flex cursor-pointer">
-                    <FontAwesomeIcon icon={faImage} size="1x" className="text-gray-500 px-2 hover:text-gray-700" />
+                    <FontAwesomeIcon icon={faImage} size="1x" className="text-gray-500 px-2 hover:text-gray-700 -mb-4" />
                     <input
                         type="file"
                         className="hidden"

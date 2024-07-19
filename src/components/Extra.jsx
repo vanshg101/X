@@ -4,7 +4,7 @@ import { faSearch, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 
 function Extra() {
   return (
-    <div className="absolute border-l-2 border-gray-800 top-0 right-0 h-full w-1/3 bg-black text-white flex flex-col items-center">
+    <div className=" fixed border-l-2 border-gray-800 bg-black top-0 right-0 h-full w-1/3  text-white flex flex-col items-center">
       <div className="w-2/3 relative h-full">
         <div className="bg-gray-800 rounded-3xl w-full h-10 mt-2 flex items-center  top-0 z-10">
           <FontAwesomeIcon icon={faSearch} className="text-white ml-4" />
@@ -15,11 +15,11 @@ function Extra() {
           />
         </div>
         
-        <div className="mt-6 h-[calc(100%-48px)] overflow-y-auto bg-black">
+        <div className=" h-full overflow-y-scroll  bg-black">
           <div className="border-2 border-gray-800 mt-5 rounded-xl w-full p-4">
             <h2 className="text-xl font-bold mb-4">What's happening</h2>
             
-            <div className="mb-4">
+            <div className="">
               <div className="flex items-start mb-2">
                 <img
                   src="https://pbs.twimg.com/semantic_core_img/1805971613285769217/oKtiLxq0?format=jpg&name=240x240"
@@ -71,8 +71,8 @@ function Extra() {
             <p className="text-blue-500 cursor-pointer">Show more</p>
           </div>
           
-          <div className="border-2 border-gray-800 mt-5 rounded-xl w-full p-4">
-            <h2 className="text-xl font-bold mb-4">Who to follow</h2>
+          <div className="border-2 border-gray-800 mt-2 rounded-xl w-full p-4">
+            <h2 className="text-xl font-bold mb-1">Who to follow</h2>
 
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
@@ -108,7 +108,7 @@ function Extra() {
               </button>
             </div>
 
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
                 <img
                   src="https://pbs.twimg.com/profile_images/1800257777190715392/VrE6v3Ji_400x400.jpg"

@@ -44,7 +44,7 @@
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PostCard from './Postcard';
+import PostCard from './PostCard';
 import appwriteService from '../apppwrite/config';
 import { setPosts } from '../store/postSlice'; // Assuming you have a setPosts action to initialize posts
 

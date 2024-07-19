@@ -93,7 +93,29 @@ export class Service{
             return false
         }
     }
-
+    async fetchAndSortPosts(postId){
+        try {
+            const response = await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                postId
+            );
+            const posts = response.documents;
+    
+            // Ensure email fields are defined before sorting
+            const sortedPosts = posts.sort((a, b) => {
+                const emailA = a.email || '';
+                const emailB = b.email || '';
+                return emailA.localeCompare(emailB);
+            });
+    
+            return sortedPosts;
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+            return [];
+        }
+    }
+    
     // file upload service
 
     async uploadFile(file){

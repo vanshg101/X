@@ -5,6 +5,7 @@ import App from './App.jsx'
 import './index.css'
 import EditPost from './components/EditPost.jsx'
 import {Home,Login,Signup,MyPost} from './pages/Pindex.js'
+import My from './pages/My.jsx'
 import Post from './components/Post.jsx'
 import { Provider } from 'react-redux'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           {
             path:"/edit-post/:postId", 
             element:<EditPost />
+          },
+          {
+            path:"/my", 
+            element:<My />
           }
     ]
   }
