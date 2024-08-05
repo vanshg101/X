@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PostCard from '../components/PostCard';
@@ -28,7 +27,7 @@ function AllPosts() {
 
     return (
         <div className="w-full">
-            <div className="block bg-black">
+            <div className="block absolute left-1/4 right-1/3 bg-black">
                 {posts.map((post) => (
                     <div key={post.$id} className="border-b-2 border-gray-800 pl-8">
                         <PostCard {...post} />
