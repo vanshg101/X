@@ -16,7 +16,7 @@ export class Service {
         // this.users = new Users(this.client); // Initialize Users service
     }
 
-    async createPost({ content, featuredImage, status, userId }) {
+    async createPost({ content,email, featuredImage, status, userId }) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -26,7 +26,8 @@ export class Service {
                     content,
                     featuredImage,
                     status,
-                    userId
+                    userId,
+                    email
                 }
             );
         } catch (error) {
@@ -89,6 +90,20 @@ export class Service {
             console.log("Appwrite service :: getPosts :: error", error);
             return false;
         }
+    }
+
+    async getPostByEmail(email){
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                [Query.equal('email', email)]
+            )
+        } catch (error) {
+            console.error('Error fetching posts by email:', error);
+            throw error;
+        }
+
     }
 
     async uploadFile(file) {

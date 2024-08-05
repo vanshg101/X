@@ -29,11 +29,11 @@ function Sidebar() {
       slug: "/mypost",
       active: authStatus,
     },
-    // {
-    //   name: "My",
-    //   slug: "/my",
-    //   active: authStatus,
-    // },
+    {
+      name: "My",
+      slug: "/my",
+      active: authStatus,
+    },
   ];
 
   return (

@@ -1,13 +1,42 @@
-// import React from 'react';
-// import SortedPosts from '../components/SortedPost';
 
-// const App = () => {
-//     return (
-//         <div>
-//             <h1>My App</h1>
-//             <SortedPosts />
-//         </div>
-//     );
-// };
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import PostCard from '../components/PostCard';
+import appwriteService from '../apppwrite/config';
+import { setPosts } from '../store/postSlice'; // Assuming you have a setPosts action to initialize posts
 
-// export default App;
+function AllPosts() {
+    const posts = useSelector((state) => state.post.posts);
+    const userData = useSelector((state) => state.auth.userData);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const email = userData.email; // Get the user's email from your user data
+                const response = await appwriteService.getPostByEmail(email); // Assuming you create this function in your service
+                if (response && response.documents) {
+                    dispatch(setPosts(response.documents));
+                }
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        };
+    
+        fetchPosts();
+    }, [dispatch, userData.email]);
+
+    return (
+        <div className="w-full">
+            <div className="block bg-black">
+                {posts.map((post) => (
+                    <div key={post.$id} className="border-b-2 border-gray-800 pl-8">
+                        <PostCard {...post} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default AllPosts;

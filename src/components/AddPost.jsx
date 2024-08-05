@@ -41,7 +41,7 @@ export default function AddPost({ post }) {
         if (file) {
             const fileId = file.$id;
             data.featuredImage = fileId;
-            const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+            const dbPost = await appwriteService.createPost({ ...data, email:userData.email,userId: userData.$id });
 
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`);
