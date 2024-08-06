@@ -3,16 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import PostCard from '../components/PostCard';
 import appwriteService from '../apppwrite/config';
 import { setPosts } from '../store/postSlice'; // Assuming you have a setPosts action to initialize posts
+import { useNavigate } from 'react-router-dom';
 
 function AllPosts() {
+    const navigate = useNavigate();
     const posts = useSelector((state) => state.post.posts);
     const userData = useSelector((state) => state.auth.userData);
+    if(!userData?.email){
+        navigate("/");
+        return "nnnnn"
+    }
     const dispatch = useDispatch();
-
+    const email = userData.email
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const email = userData.email; // Get the user's email from your user data
+                ; // Get the user's email from your user data
                 const response = await appwriteService.getPostByEmail(email); // Assuming you create this function in your service
                 if (response && response.documents) {
                     dispatch(setPosts(response.documents));
@@ -24,6 +30,8 @@ function AllPosts() {
     
         fetchPosts();
     }, [dispatch, userData.email]);
+
+    
 
     return (
         <div className="w-full">
